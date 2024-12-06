@@ -13,3 +13,6 @@
 .externalNativeBuild
 .cxx
 local.properties
+
+.idea
+DS_STORE
