@@ -12,8 +12,8 @@ import com.example.kiosk.model.CellType;
 import com.example.kiosk.model.Model;
 import com.example.kiosk.screen.base.BaseViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
-import com.example.kiosk.widget.adapter.viewHolder.empty.EmptyViewHolder;
 import com.example.kiosk.widget.adapter.viewHolder.ModelViewHolder;
+import com.example.kiosk.widget.adapter.viewHolder.empty.EmptyViewHolder;
 import com.example.kiosk.widget.adapter.viewHolder.kioskItem.KioskItemViewHolder;
 
 public class ModelViewHolderMapper {
@@ -21,7 +21,7 @@ public class ModelViewHolderMapper {
     }
 
     @SuppressLint("UNCHECKED_CAST")
-    public <M extends Model> ModelViewHolder<M> map(
+    public static <M extends Model> ModelViewHolder<M> map(
             @NonNull ViewGroup parent,
             @NonNull CellType type,
             @NonNull BaseViewModel viewModel,

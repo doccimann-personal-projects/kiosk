@@ -19,6 +19,6 @@ public class EmptyViewHolder extends ModelViewHolder<Model> {
     }
 
     @Override
-    protected void bindViews(@NonNull Model model, @NonNull AdapterListener adapterListener) {
+    public void bindViews(@NonNull Model model, @NonNull AdapterListener adapterListener) {
     }
 }

@@ -30,6 +30,14 @@ abstract public class Model {
         };
     }
 
+    public long getId() {
+        return id;
+    }
+
+    public CellType getType() {
+        return type;
+    }
+
     @Override
     public boolean equals(@Nullable Object obj) {
         if (this == obj) {

@@ -1,7 +1,5 @@
 package com.example.kiosk.widget.adapter.viewHolder.kioskItem;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.viewbinding.ViewBinding;
 
@@ -24,11 +22,11 @@ public class KioskItemViewHolder extends ModelViewHolder<KioskItemModel> {
 
     @Override
     protected void reset() {
-
+        // TODO 구현
     }
 
     @Override
-    protected void bindViews(@NonNull KioskItemModel model, @NonNull AdapterListener adapterListener) {
+    public void bindViews(@NonNull KioskItemModel model, @NonNull AdapterListener adapterListener) {
         if (adapterListener instanceof KioskItemListListener) {
             binding.getRoot().setOnClickListener(v -> {
                 ((KioskItemListListener) adapterListener).onClickItem(model);
@@ -37,7 +35,7 @@ public class KioskItemViewHolder extends ModelViewHolder<KioskItemModel> {
     }
 
     @Override
-    protected void bindData(@NonNull KioskItemModel model) {
+    public void bindData(@NonNull KioskItemModel model) {
         super.bindData(model);
 
         // TODO 구현

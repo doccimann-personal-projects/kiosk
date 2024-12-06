@@ -1,7 +1,5 @@
 package com.example.kiosk.widget.adapter.viewHolder;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewbinding.ViewBinding;
@@ -25,9 +23,9 @@ abstract public class ModelViewHolder<M extends Model> extends RecyclerView.View
 
     abstract protected void reset();
 
-    abstract protected void bindViews(@NonNull M model, @NonNull AdapterListener adapterListener);
+    abstract public void bindViews(@NonNull M model, @NonNull AdapterListener adapterListener);
 
-    protected void bindData(@NonNull M model) {
+    public void bindData(@NonNull M model) {
         reset();
     }
 }
