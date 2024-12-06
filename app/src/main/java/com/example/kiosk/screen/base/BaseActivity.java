@@ -3,6 +3,7 @@ package com.example.kiosk.screen.base;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewbinding.ViewBinding;
@@ -38,5 +39,6 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     protected abstract VM getViewModel();
 
+    @NonNull
     protected abstract VB getViewBinding();
 }

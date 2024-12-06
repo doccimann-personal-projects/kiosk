@@ -1,15 +1,15 @@
-package com.example.kiosk.screen.main;
+package com.example.kiosk.screen.cart;
 
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.example.kiosk.databinding.ActivityMainBinding;
+import com.example.kiosk.databinding.ActivityCartBinding;
 import com.example.kiosk.screen.base.BaseActivity;
-import com.example.kiosk.screen.main.viewModel.MainViewModel;
+import com.example.kiosk.screen.cart.viewModel.CartViewModel;
 
-public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
+public class CartActivity extends BaseActivity<CartViewModel, ActivityCartBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -21,13 +21,13 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     }
 
     @Override
-    protected MainViewModel getViewModel() {
+    protected CartViewModel getViewModel() {
         return null;
     }
 
     @NonNull
     @Override
-    protected ActivityMainBinding getViewBinding() {
-        return ActivityMainBinding.inflate(getLayoutInflater());
+    protected ActivityCartBinding getViewBinding() {
+        return ActivityCartBinding.inflate(getLayoutInflater());
     }
 }
