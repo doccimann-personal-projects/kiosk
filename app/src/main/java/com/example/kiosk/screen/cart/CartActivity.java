@@ -9,6 +9,9 @@ import com.example.kiosk.databinding.ActivityCartBinding;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.cart.viewModel.CartViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class CartActivity extends BaseActivity<CartViewModel, ActivityCartBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

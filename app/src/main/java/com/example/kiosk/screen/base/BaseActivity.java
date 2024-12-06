@@ -10,6 +10,8 @@ import androidx.viewbinding.ViewBinding;
 public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBinding> extends AppCompatActivity {
     protected VB binding;
 
+    private Runnable onRequestPermissionSucceed = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         this.binding = getViewBinding();
@@ -40,4 +42,12 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     @NonNull
     protected abstract VB getViewBinding();
+
+    public Runnable getOnRequestPermissionSucceed() {
+        return onRequestPermissionSucceed;
+    }
+
+    public void setOnRequestPermissionSucceed(Runnable onRequestPermissionSucceed) {
+        this.onRequestPermissionSucceed = onRequestPermissionSucceed;
+    }
 }

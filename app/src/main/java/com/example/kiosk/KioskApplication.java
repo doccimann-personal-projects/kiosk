@@ -10,6 +10,9 @@ import androidx.annotation.Nullable;
 
 import java.util.List;
 
+import dagger.hilt.android.HiltAndroidApp;
+
+@HiltAndroidApp
 public class KioskApplication extends android.app.Application implements android.app.Application.ActivityLifecycleCallbacks {
     @Override
     public void onCreate() {

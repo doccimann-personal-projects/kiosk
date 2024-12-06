@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <!-- Android SDK 33 부터 POST_NOTIFICATION 권한을 요청해야 알림을 수신할 수 있음 -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+
     <application
         android:name=".KioskApplication"
         android:allowBackup="true"

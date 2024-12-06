@@ -9,6 +9,9 @@ import com.example.kiosk.databinding.ActivityMainBinding;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.main.viewModel.MainViewModel;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
 public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
