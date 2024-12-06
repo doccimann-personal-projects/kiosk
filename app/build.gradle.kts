@@ -6,6 +6,14 @@ android {
     namespace = "com.example.kiosk"
     compileSdk = 34
 
+    viewBinding {
+        enable = true
+    }
+
+    dataBinding {
+        enable = true
+    }
+
     defaultConfig {
         applicationId = "com.example.kiosk"
         minSdk = 24
