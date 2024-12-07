@@ -37,6 +37,9 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     protected abstract void observeData();
 
+    protected void initViewModelObserver() {
+    }
+
     protected abstract VM getViewModel();
 
     @NonNull

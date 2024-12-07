@@ -53,7 +53,8 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         });
     }
 
-    private void initViewModelObserver() {
+    @Override
+    protected void initViewModelObserver() {
         viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
 
         binding.setViewModel(viewModel);
