@@ -26,7 +26,8 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
     @Inject
     HomeActivityPermissionManager<HomeActivity> permissionManager;
 
-    private HomeViewModel viewModel;
+    @Inject
+    HomeViewModel viewModel;
 
     private Handler handler;
 
@@ -61,17 +62,10 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
 
     @Override
     protected void initViewModelObserver() {
-        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
         observeData();
-    }
-
-    @Override
-    protected HomeViewModel getViewModel() {
-        return viewModel;
     }
 
     @NonNull

@@ -23,11 +23,6 @@ public class MenuDescriptionActivity extends BaseActivity<MenuDescriptionViewMod
 
     }
 
-    @Override
-    protected MenuDescriptionViewModel getViewModel() {
-        return null;
-    }
-
     @NonNull
     @Override
     protected ActivityMenuDescriptionBinding getViewBinding() {

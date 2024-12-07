@@ -23,11 +23,6 @@ public class CartActivity extends BaseActivity<CartViewModel, ActivityCartBindin
 
     }
 
-    @Override
-    protected CartViewModel getViewModel() {
-        return null;
-    }
-
     @NonNull
     @Override
     protected ActivityCartBinding getViewBinding() {

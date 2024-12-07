@@ -13,11 +13,14 @@ import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.home.HomeActivity;
 import com.example.kiosk.screen.main.viewModel.MainViewModel;
 
+import javax.inject.Inject;
+
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
-    private MainViewModel viewModel;
+    @Inject
+    MainViewModel viewModel;
 
     private Handler handler;
 
@@ -55,17 +58,10 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     protected void initViewModelObserver() {
-        viewModel = new ViewModelProvider(this).get(MainViewModel.class);
-
         binding.setViewModel(viewModel);
         binding.setLifecycleOwner(this);
 
         observeData();
-    }
-
-    @Override
-    protected MainViewModel getViewModel() {
-        return null;
     }
 
     @NonNull
