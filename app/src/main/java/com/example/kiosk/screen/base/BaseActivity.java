@@ -12,6 +12,8 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     private Runnable onRequestPermissionSucceed = null;
 
+    protected Runnable fetchJob = null;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         this.binding = getViewBinding();
@@ -51,5 +53,9 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     public void setOnRequestPermissionSucceed(Runnable onRequestPermissionSucceed) {
         this.onRequestPermissionSucceed = onRequestPermissionSucceed;
+    }
+
+    protected void executeFetchJobAfterViewModelInitialized() {
+
     }
 }

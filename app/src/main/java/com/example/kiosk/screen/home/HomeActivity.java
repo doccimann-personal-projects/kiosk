@@ -3,6 +3,7 @@ package com.example.kiosk.screen.home;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,12 +28,17 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
 
     private HomeViewModel viewModel;
 
+    private Handler handler;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         // ViewModel 초기화
         initViewModelObserver();
+
+        handler = new Handler(this.getMainLooper());
+        executeFetchJobAfterViewModelInitialized();
 
         // API 33 이상일 경우 알림 권한 요청 처리
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -65,7 +71,7 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
 
     @Override
     protected HomeViewModel getViewModel() {
-        return null;
+        return viewModel;
     }
 
     @NonNull

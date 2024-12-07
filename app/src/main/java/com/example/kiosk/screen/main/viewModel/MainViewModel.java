@@ -1,5 +1,6 @@
 package com.example.kiosk.screen.main.viewModel;
 
+import androidx.annotation.Nullable;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
@@ -15,5 +16,11 @@ public class MainViewModel extends BaseViewModel {
 
     public void doneNavigatingToHomeActivity() {
         _navigateToHomeActivity.postValue(false);
+    }
+
+    @Nullable
+    @Override
+    protected Runnable initializeFetchData() {
+        return null;
     }
 }

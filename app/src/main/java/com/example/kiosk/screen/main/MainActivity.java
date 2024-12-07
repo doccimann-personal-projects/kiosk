@@ -2,6 +2,7 @@ package com.example.kiosk.screen.main;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -18,11 +19,17 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
     private MainViewModel viewModel;
 
+    private Handler handler;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // 아래는 Activity 보일러 플레이트입니다
         initViewModelObserver();
+
+        handler = new Handler(this.getMainLooper());
+        executeFetchJobAfterViewModelInitialized();
     }
 
     @Override
@@ -35,6 +42,15 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
                 viewModel.doneNavigatingToHomeActivity();
             }
         });
+    }
+
+    @Override
+    protected void executeFetchJobAfterViewModelInitialized() {
+        fetchJob = viewModel.getFetchData();
+
+        if (fetchJob != null) {
+            handler.post(fetchJob);
+        }
     }
 
     @Override

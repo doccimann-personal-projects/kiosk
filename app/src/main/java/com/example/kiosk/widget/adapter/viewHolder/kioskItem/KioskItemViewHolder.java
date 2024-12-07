@@ -8,7 +8,7 @@ import com.example.kiosk.screen.base.BaseViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.viewHolder.ModelViewHolder;
 import com.example.kiosk.widget.listener.AdapterListener;
-import com.example.kiosk.widget.listener.kioskItem.KioskItemListListener;
+import com.example.kiosk.widget.listener.kioskProduct.KioskProductListListener;
 
 public class KioskItemViewHolder extends ModelViewHolder<KioskItemModel> {
     private final ViewBinding binding;
@@ -27,9 +27,9 @@ public class KioskItemViewHolder extends ModelViewHolder<KioskItemModel> {
 
     @Override
     public void bindViews(@NonNull KioskItemModel model, @NonNull AdapterListener adapterListener) {
-        if (adapterListener instanceof KioskItemListListener) {
+        if (adapterListener instanceof KioskProductListListener) {
             binding.getRoot().setOnClickListener(v -> {
-                ((KioskItemListListener) adapterListener).onClickItem(model);
+                ((KioskProductListListener) adapterListener).onClickItem(model);
             });
         }
     }
