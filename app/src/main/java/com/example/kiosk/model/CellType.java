@@ -2,7 +2,7 @@ package com.example.kiosk.model;
 
 public enum CellType {
     EMPTY_CELL(0),
-    KIOSK_ITEM_CELL(1);
+    KIOSK_PRODUCT_CELL(1);
 
     private final int value;
 

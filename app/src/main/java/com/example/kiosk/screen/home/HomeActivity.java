@@ -7,8 +7,6 @@ import android.os.Handler;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.lifecycle.LifecycleOwner;
-import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kiosk.databinding.ActivityHomeBinding;
 import com.example.kiosk.manager.permission.HomeActivityPermissionManager;

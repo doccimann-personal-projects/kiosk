@@ -67,4 +67,10 @@ dependencies {
     // Dagger-Hilt
     implementation(libs.hilt.android)
     annotationProcessor(libs.hilt.compiler)
+
+    implementation(libs.auto.value.annotations)
+    annotationProcessor(libs.auto.value)
+
+    implementation(libs.auto.value.parcel)
+    annotationProcessor(libs.auto.value.parcel)
 }

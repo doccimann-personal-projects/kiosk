@@ -12,7 +12,6 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.kiosk.screen.base.BaseActivity;
 
-import java.lang.reflect.Array;
 import java.util.Arrays;
 
 public class AbstractPermissionManager<T extends BaseActivity<?, ?>> {

@@ -13,6 +13,17 @@ import androidx.viewbinding.ViewBinding;
 public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBinding> extends Fragment {
     protected VB binding;
 
+    protected Runnable fetchJob = null;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        if (fetchJob != null) {
+            new Thread(fetchJob).start();
+        }
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -41,6 +52,7 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
         }
 
         initViews();
+        fetchJob = getViewModel().fetchData;
         observeData();
     }
 

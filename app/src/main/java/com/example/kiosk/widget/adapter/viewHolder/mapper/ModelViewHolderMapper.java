@@ -39,7 +39,7 @@ public class ModelViewHolderMapper {
                 );
                 break;
 
-            case KIOSK_ITEM_CELL:
+            case KIOSK_PRODUCT_CELL:
                 viewHolder = new KioskItemViewHolder(
                         ViewholderKioskItemBinding.inflate(inflater, parent, false),
                         viewModel,
