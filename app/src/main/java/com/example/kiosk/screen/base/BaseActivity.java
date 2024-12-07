@@ -29,7 +29,6 @@ public abstract class BaseActivity<VM extends BaseViewModel, VB extends ViewBind
 
     protected void initState() {
         initViews();
-        observeData();
     }
 
     protected void initViews() {

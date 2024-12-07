@@ -1,19 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<!-- 데이터 바인딩을 사용하기 위해선 layout 안에 감싸야함 -->
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/home"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".screen.home.HomeActivity">
+    >
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <!-- Data Binding -->
+    <data>
+        <variable
+            name="viewModel"
+            type="com.example.kiosk.screen.home.viewModel.HomeViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!-- Layouts -->
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".screen.home.HomeActivity">
+
+        <!-- 상단 레스토랑 텍스트 -->
+        <TextView
+            android:id="@+id/restaurant_name"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="150dp"
+            android:text="MS 레스토랑"
+            android:textColor="#000000"
+            android:textSize="50sp"
+            android:textAlignment="center"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TableLayout
+            android:id="@+id/tablayout"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/restaurant_name" />
+
+        <!-- 주문하기 버튼 -->
+        <Button
+            android:id="@+id/order_button"
+            android:layout_width="300dp"
+            android:layout_height="100dp"
+            android:layout_marginTop="50dp"
+            android:background="@drawable/home_order_button_background"
+            android:onClick="@{() -> viewModel.onOrderButtonClicked()}"
+            android:text="주문하기"
+            android:textColor="#FFFFFF"
+            android:textSize="50sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tablayout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

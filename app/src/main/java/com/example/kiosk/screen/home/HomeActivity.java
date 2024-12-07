@@ -1,15 +1,19 @@
 package com.example.kiosk.screen.home;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.lifecycle.LifecycleOwner;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kiosk.databinding.ActivityHomeBinding;
 import com.example.kiosk.manager.permission.HomeActivityPermissionManager;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.home.viewModel.HomeViewModel;
+import com.example.kiosk.screen.main.MainActivity;
 
 import javax.inject.Inject;
 
@@ -17,12 +21,18 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBinding> {
+
     @Inject
     HomeActivityPermissionManager<HomeActivity> permissionManager;
+
+    private HomeViewModel viewModel;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        // ViewModel 초기화
+        initViewModelObserver();
 
         // API 33 이상일 경우 알림 권한 요청 처리
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
@@ -32,7 +42,24 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
 
     @Override
     protected void observeData() {
+        viewModel.navigateToMainActivity.observe(this, shouldNavigate -> {
+            // True인 경우 MainActivity로 이동
+            if (shouldNavigate == true) {
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
 
+                viewModel.doneNavigatingToMainActivity();
+            }
+        });
+    }
+
+    private void initViewModelObserver() {
+        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
+
+        binding.setViewModel(viewModel);
+        binding.setLifecycleOwner(this);
+
+        observeData();
     }
 
     @Override
