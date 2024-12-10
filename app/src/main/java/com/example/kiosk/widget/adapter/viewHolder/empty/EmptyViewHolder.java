@@ -9,7 +9,7 @@ import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.viewHolder.ModelViewHolder;
 import com.example.kiosk.widget.listener.AdapterListener;
 
-public class EmptyViewHolder extends ModelViewHolder<Model> {
+public class EmptyViewHolder extends ModelViewHolder<Model, BaseViewModel> {
     public EmptyViewHolder(@NonNull ViewBinding binding, @NonNull BaseViewModel viewModel, @NonNull ResourcesProvider resourcesProvider) {
         super(binding, viewModel, resourcesProvider);
     }

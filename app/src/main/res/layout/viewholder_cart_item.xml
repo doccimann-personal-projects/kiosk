@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="40dp">
+
+        <FrameLayout
+            android:id="@+id/cart_leftmost_blank"
+            android:layout_width="10dp"
+            android:layout_height="match_parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+        <!-- 제품 이름 -->
+        <TextView
+            android:id="@+id/cart_item_name"
+            android:layout_width="150dp"
+            android:layout_height="match_parent"
+            android:text="name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center_vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cart_leftmost_blank"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/right_blank_cart_item_name_layout"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cart_item_name"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 총 가격 -->
+        <TextView
+            android:id="@+id/cart_total_price"
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="$0.00"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/right_blank_cart_item_name_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/right_blank_cart_total_price_layout"
+            android:layout_width="12dp"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cart_total_price"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- + 버튼 -->
+        <ImageButton
+            android:id="@+id/cart_btn_increase"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/cart_up_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@id/right_blank_cart_total_price_layout"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 총 수량 -->
+        <TextView
+            android:id="@+id/cart_total_quantity"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:text="1"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/cart_btn_decrease"
+            app:layout_constraintStart_toEndOf="@id/cart_btn_increase"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- - 버튼 -->
+        <ImageButton
+            android:id="@+id/cart_btn_decrease"
+            android:layout_width="32dp"
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/cart_down_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/cart_total_quantity"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

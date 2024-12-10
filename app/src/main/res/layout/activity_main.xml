@@ -48,5 +48,22 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <FrameLayout
+            android:id="@+id/under_menu_blank_layout"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/back_button_container" />
+
+        <!-- 키오스크 메뉴 노출 프레그먼트 -->
+        <FrameLayout
+            android:id="@+id/kiosk_product_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="550dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/under_menu_blank_layout" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

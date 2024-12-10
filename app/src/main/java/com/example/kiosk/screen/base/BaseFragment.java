@@ -1,6 +1,7 @@
 package com.example.kiosk.screen.base;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        fetchJob = getViewModel().fetchData;
 
         if (fetchJob != null) {
             new Thread(fetchJob).start();
@@ -52,7 +55,6 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
         }
 
         initViews();
-        fetchJob = getViewModel().fetchData;
         observeData();
     }
 

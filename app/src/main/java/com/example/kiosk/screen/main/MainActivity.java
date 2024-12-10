@@ -7,9 +7,11 @@ import android.os.Handler;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.kiosk.R;
 import com.example.kiosk.databinding.ActivityMainBinding;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.home.HomeActivity;
+import com.example.kiosk.screen.main.fragment.kioskProduct.KioskProductFragment;
 import com.example.kiosk.screen.main.viewModel.MainViewModel;
 
 import javax.inject.Inject;
@@ -32,6 +34,19 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
         handler = new Handler(this.getMainLooper());
         executeFetchJobAfterViewModelInitialized();
+    }
+
+    @Override
+    protected void initViews() {
+        super.initViews();
+
+        // Fragment 노출
+        KioskProductFragment kioskProductFragment = new KioskProductFragment();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.kiosk_product_fragment_container, kioskProductFragment)
+                .commit();
     }
 
     @Override

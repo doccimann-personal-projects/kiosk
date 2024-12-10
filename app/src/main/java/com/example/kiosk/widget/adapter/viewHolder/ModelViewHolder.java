@@ -9,12 +9,12 @@ import com.example.kiosk.screen.base.BaseViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.listener.AdapterListener;
 
-abstract public class ModelViewHolder<M extends Model> extends RecyclerView.ViewHolder {
-    protected final BaseViewModel viewModel;
+abstract public class ModelViewHolder<M extends Model, VM extends BaseViewModel> extends RecyclerView.ViewHolder {
+    protected final VM viewModel;
     protected final ResourcesProvider resourcesProvider;
 
     public ModelViewHolder(@NonNull ViewBinding binding,
-                           @NonNull BaseViewModel viewModel,
+                           @NonNull VM viewModel,
                            @NonNull ResourcesProvider resourcesProvider) {
         super(binding.getRoot());
         this.viewModel = viewModel;

@@ -1,10 +1,12 @@
 package com.example.kiosk.widget.adapter;
 
 import android.annotation.SuppressLint;
+import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
 import com.example.kiosk.model.CellType;
@@ -17,17 +19,17 @@ import com.example.kiosk.widget.listener.AdapterListener;
 
 import java.util.List;
 
-public class ModelRecyclerAdapter<M extends Model, VM extends BaseViewModel> extends ListAdapter<Model, ModelViewHolder<Model>> {
-    private List<Model> modelList;
+public class ModelRecyclerAdapter<M extends Model, VM extends BaseViewModel> extends ListAdapter<M, ModelViewHolder<M, VM>> {
+    private List<M> modelList;
     private final VM viewModel;
     private final ResourcesProvider resourcesProvider;
     private final AdapterListener adapterListener;
 
-    public ModelRecyclerAdapter(@NonNull List<Model> modelList,
+    public ModelRecyclerAdapter(@NonNull List<M> modelList,
                                 @NonNull VM viewModel,
                                 @NonNull ResourcesProvider resourcesProvider,
                                 @NonNull AdapterListener adapterListener) {
-        super(Model.DIFF_CALLBACK());
+        super((DiffUtil.ItemCallback<M>) M.DIFF_CALLBACK());
 
         this.modelList = modelList;
         this.viewModel = viewModel;
@@ -47,20 +49,22 @@ public class ModelRecyclerAdapter<M extends Model, VM extends BaseViewModel> ext
 
     @Override
     @NonNull
-    public ModelViewHolder<Model> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ModelViewHolder<M, VM> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.i("brian", String.valueOf(viewType));
+
         CellType cellType = CellType.from(viewType);
         return ModelViewHolderMapper.map(parent, cellType, viewModel, resourcesProvider);
     }
 
     @Override
     @SuppressLint("UNCHECKED_CAST")
-    public void onBindViewHolder(@NonNull ModelViewHolder<Model> holder, int position) {
+    public void onBindViewHolder(@NonNull ModelViewHolder<M, VM> holder, int position) {
         holder.bindData((M) modelList.get(position));
         holder.bindViews((M) modelList.get(position), adapterListener);
     }
 
     @Override
-    public void submitList(@Nullable List<Model> list) {
+    public void submitList(@Nullable List<M> list) {
         this.modelList = (list != null) ? list : List.of();
         super.submitList(list);
     }
