@@ -2,7 +2,6 @@ package com.example.kiosk.data.entity;
 
 import android.os.Parcelable;
 
-import com.example.kiosk.data.repository.kiosk.KioskProductRepository;
 import com.google.auto.value.AutoValue;
 
 import java.math.BigInteger;

@@ -1,13 +1,8 @@
 package com.example.kiosk.data.repository.kiosk;
 
-import android.os.Parcel;
-
-import androidx.annotation.NonNull;
-
 import com.example.kiosk.data.entity.KioskProductEntity;
 
 import java.math.BigInteger;
-import java.util.Collections;
 import java.util.List;
 
 public class DefaultKioskProductRepository implements KioskProductRepository {

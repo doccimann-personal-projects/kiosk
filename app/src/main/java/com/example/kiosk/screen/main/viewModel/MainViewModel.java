@@ -8,7 +8,6 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.example.kiosk.screen.base.BaseViewModel;
-import com.example.kiosk.useCase.kioskProduct.FetchKioskProductUseCase;
 
 import javax.inject.Inject;
 

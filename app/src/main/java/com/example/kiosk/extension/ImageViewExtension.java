@@ -9,9 +9,9 @@ import com.bumptech.glide.RequestBuilder;
 import com.bumptech.glide.load.Transformation;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.bumptech.glide.load.resource.bitmap.CenterInside;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions;
 import com.bumptech.glide.request.transition.DrawableCrossFadeFactory;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 public class ImageViewExtension {
     // fade-in, fade-out의 애니메이션을 처리하기 위한 factory

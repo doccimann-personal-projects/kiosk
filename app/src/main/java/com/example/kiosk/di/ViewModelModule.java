@@ -4,7 +4,6 @@ import android.content.Context;
 
 import com.example.kiosk.screen.home.viewModel.HomeViewModel;
 import com.example.kiosk.screen.main.viewModel.MainViewModel;
-import com.example.kiosk.useCase.kioskProduct.FetchKioskProductUseCase;
 
 import dagger.Module;
 import dagger.Provides;

@@ -1,12 +1,9 @@
 package com.example.kiosk.widget.adapter.viewHolder.cartItem;
 
-import android.util.Log;
-
 import androidx.annotation.NonNull;
 
 import com.example.kiosk.databinding.ViewholderCartItemBinding;
 import com.example.kiosk.model.cartItem.CartItemModel;
-import com.example.kiosk.screen.base.BaseViewModel;
 import com.example.kiosk.screen.main.fragment.cartItem.viewModel.CartItemViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.viewHolder.ModelViewHolder;

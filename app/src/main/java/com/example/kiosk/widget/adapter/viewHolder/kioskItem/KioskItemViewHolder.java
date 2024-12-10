@@ -1,12 +1,10 @@
 package com.example.kiosk.widget.adapter.viewHolder.kioskItem;
 
 import androidx.annotation.NonNull;
-import androidx.viewbinding.ViewBinding;
 
 import com.example.kiosk.databinding.ViewholderKioskItemBinding;
 import com.example.kiosk.extension.ImageViewExtension;
 import com.example.kiosk.model.kioskProduct.KioskProductModel;
-import com.example.kiosk.screen.base.BaseViewModel;
 import com.example.kiosk.screen.main.fragment.kioskProduct.viewModel.KioskProductViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.viewHolder.ModelViewHolder;
