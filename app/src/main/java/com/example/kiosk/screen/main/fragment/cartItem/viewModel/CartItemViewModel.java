@@ -23,9 +23,19 @@ public class CartItemViewModel extends BaseViewModel {
         Log.i("brian", "decrease button clicked!");
     }
 
+    public void onCheckoutButtonClicked() {
+        Log.i("brian", "cartItemViewModel.onCheckoutButtonClicked() called!");
+    }
+
+    public void onCancelButtonClicked() {
+        Log.i("brian", "cartItemViewModel.onCancelButtonClicked() called!");
+    }
+
     @Nullable
     @Override
     protected Runnable initializeFetchData() {
-        return null;
+        return () -> {
+            Log.i("brian", "cartItemViewModel.initializeFetchData() called!");
+        };
     }
 }

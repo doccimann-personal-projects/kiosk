@@ -11,6 +11,7 @@ import com.example.kiosk.R;
 import com.example.kiosk.databinding.ActivityMainBinding;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.home.HomeActivity;
+import com.example.kiosk.screen.main.fragment.cartItem.CartItemFragment;
 import com.example.kiosk.screen.main.fragment.kioskProduct.KioskProductFragment;
 import com.example.kiosk.screen.main.viewModel.MainViewModel;
 
@@ -40,12 +41,20 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     protected void initViews() {
         super.initViews();
 
-        // Fragment 노출
+        // Kiosk Product Fragment 노출
         KioskProductFragment kioskProductFragment = new KioskProductFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.kiosk_product_fragment_container, kioskProductFragment)
+                .commit();
+
+        // Cart Item Fragment 노출
+        CartItemFragment cartItemFragment = new CartItemFragment();
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .add(R.id.cart_item_fragment_container, cartItemFragment)
                 .commit();
     }
 

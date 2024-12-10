@@ -1,4 +1,81 @@
 package com.example.kiosk.screen.main.fragment.cartItem;
 
-public class CartItemFragment {
+import android.os.Bundle;
+import android.util.Log;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.example.kiosk.databinding.FragmentCartItemBinding;
+import com.example.kiosk.model.cartItem.CartItemModel;
+import com.example.kiosk.screen.base.BaseFragment;
+import com.example.kiosk.screen.main.fragment.cartItem.viewModel.CartItemViewModel;
+import com.example.kiosk.util.provider.ResourcesProvider;
+import com.example.kiosk.widget.adapter.ModelRecyclerAdapter;
+import com.example.kiosk.widget.listener.cartItem.CartItemListListener;
+
+import java.util.List;
+
+import javax.inject.Inject;
+
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCartItemBinding> {
+    @Inject
+    CartItemViewModel viewModel;
+
+    @Inject
+    ResourcesProvider resourcesProvider;
+
+    private ModelRecyclerAdapter<CartItemModel, CartItemViewModel> adapter;
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        Log.i("brian", "CartItemFragment.onCreate() called!");
+        super.onCreate(savedInstanceState);
+
+        adapter = new ModelRecyclerAdapter<>(List.of(), viewModel, resourcesProvider, new CartItemListListener() {
+            @Override
+            public void onClickItem(@NonNull CartItemModel model) {
+                // TODO 장바구니 아이템 클릭시 발생하는 이벤트
+            }
+        });
+    }
+
+    @Override
+    protected void initViews() {
+        super.initViews();
+
+        // 어댑터 장착
+        binding.cartItemRecyclerView.setAdapter(adapter);
+
+        // 버튼 클릭 리스너 초기화
+        binding.btnCheckout.setOnClickListener(v -> {
+            viewModel.onCheckoutButtonClicked();
+        });
+
+        binding.btnBack.setOnClickListener(v -> {
+            viewModel.onCancelButtonClicked();
+        });
+    }
+
+    @Override
+    protected void observeData() {
+        Log.i("brian", "cartItemFragment.observeData() called!");
+
+        viewModel.cartItemListLiveData.observe(this, modelList -> {
+            adapter.submitList(modelList);
+        });
+    }
+
+    @Override
+    protected CartItemViewModel getViewModel() {
+        return viewModel;
+    }
+
+    @Override
+    protected FragmentCartItemBinding getViewBinding() {
+        return FragmentCartItemBinding.inflate(getLayoutInflater());
+    }
 }

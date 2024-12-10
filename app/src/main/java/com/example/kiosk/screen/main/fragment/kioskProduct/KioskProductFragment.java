@@ -51,11 +51,11 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
         super.initViews();
 
         // 어댑터 장착
-        binding.recyclerView.setAdapter(adapter);
+        binding.kioskProductRecyclerView.setAdapter(adapter);
 
         // GridLayoutManager 적용
         GridLayoutManager gridLayoutManager = new GridLayoutManager(requireContext(), 3);
-        binding.recyclerView.setLayoutManager(gridLayoutManager);
+        binding.kioskProductRecyclerView.setLayoutManager(gridLayoutManager);
     }
 
     @Override
@@ -63,9 +63,6 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
         Log.i("brian", "kioskProductFragment.observeData() called!");
 
         viewModel.kioskProductModelListLiveData.observe(this, modelList -> {
-            modelList.forEach(model -> {
-                Log.i("brian", model.getName());
-            });
             adapter.submitList(modelList);
         });
     }

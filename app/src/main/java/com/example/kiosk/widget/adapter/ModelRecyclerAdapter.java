@@ -1,7 +1,6 @@
 package com.example.kiosk.widget.adapter;
 
 import android.annotation.SuppressLint;
-import android.util.Log;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -50,8 +49,6 @@ public class ModelRecyclerAdapter<M extends Model, VM extends BaseViewModel> ext
     @Override
     @NonNull
     public ModelViewHolder<M, VM> onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Log.i("brian", String.valueOf(viewType));
-
         CellType cellType = CellType.from(viewType);
         return ModelViewHolderMapper.map(parent, cellType, viewModel, resourcesProvider);
     }

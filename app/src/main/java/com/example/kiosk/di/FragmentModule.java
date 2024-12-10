@@ -2,6 +2,7 @@ package com.example.kiosk.di;
 
 import androidx.fragment.app.Fragment;
 
+import com.example.kiosk.screen.main.fragment.cartItem.viewModel.CartItemViewModel;
 import com.example.kiosk.screen.main.fragment.kioskProduct.viewModel.KioskProductViewModel;
 import com.example.kiosk.useCase.kioskProduct.FetchKioskProductUseCase;
 import com.example.kiosk.util.provider.DefaultResourcesProvider;
@@ -20,6 +21,12 @@ public class FragmentModule {
     @FragmentScoped
     public KioskProductViewModel providesKioskProductViewModel(FetchKioskProductUseCase fetchKioskProductUseCase) {
         return new KioskProductViewModel(fetchKioskProductUseCase);
+    }
+
+    @Provides
+    @FragmentScoped
+    public CartItemViewModel providesCartItemViewModel() {
+        return new CartItemViewModel();
     }
 
     @Provides
