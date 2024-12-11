@@ -14,7 +14,7 @@ public abstract class KioskProductEntity extends Entity implements Parcelable {
 
     public abstract BigInteger price();
 
-    public static KioskProductEntity create(int id, String imageUrl, String name, BigInteger price) {
+    public static KioskProductEntity create(long id, String imageUrl, String name, BigInteger price) {
         return new AutoValue_KioskProductEntity(id, imageUrl, name, price);
     }
 }

@@ -12,6 +12,7 @@ import com.example.kiosk.databinding.FragmentKioskProductBinding;
 import com.example.kiosk.model.kioskProduct.KioskProductModel;
 import com.example.kiosk.screen.base.BaseFragment;
 import com.example.kiosk.screen.main.fragment.kioskProduct.viewModel.KioskProductViewModel;
+import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.ModelRecyclerAdapter;
 import com.example.kiosk.widget.listener.kioskProduct.KioskProductListListener;
@@ -24,6 +25,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class KioskProductFragment extends BaseFragment<KioskProductViewModel, FragmentKioskProductBinding> {
+    @Inject
+    MainSharedViewModel sharedViewModel;
+
     @Inject
     KioskProductViewModel viewModel;
 
@@ -41,7 +45,7 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
         adapter = new ModelRecyclerAdapter<>(List.of(), viewModel, resourcesProvider, new KioskProductListListener() {
             @Override
             public void onClickItem(@NonNull KioskProductModel model) {
-                Toast.makeText(requireContext(), model.getName(), Toast.LENGTH_SHORT).show();
+                sharedViewModel.onKioskProductClicked(model.getId());
             }
         });
     }
@@ -75,5 +79,9 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
     @Override
     protected FragmentKioskProductBinding getViewBinding() {
         return FragmentKioskProductBinding.inflate(getLayoutInflater());
+    }
+
+    public static KioskProductFragment newInstance() {
+        return new KioskProductFragment();
     }
 }

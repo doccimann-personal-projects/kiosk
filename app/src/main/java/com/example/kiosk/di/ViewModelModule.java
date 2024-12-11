@@ -3,7 +3,8 @@ package com.example.kiosk.di;
 import android.content.Context;
 
 import com.example.kiosk.screen.home.viewModel.HomeViewModel;
-import com.example.kiosk.screen.main.viewModel.MainViewModel;
+import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
+import com.example.kiosk.screen.menuDescription.viewModel.MenuDescriptionSharedViewModel;
 
 import dagger.Module;
 import dagger.Provides;
@@ -23,7 +24,13 @@ public class ViewModelModule {
 
     @Provides
     @ActivityScoped
-    public MainViewModel providesMainViewModel(@ActivityContext Context context) {
-        return new MainViewModel(context);
+    public MainSharedViewModel providesMainViewModel(@ActivityContext Context context) {
+        return new MainSharedViewModel(context);
+    }
+
+    @Provides
+    @ActivityScoped
+    public MenuDescriptionSharedViewModel providesMenuDescriptionSharedViewModel(@ActivityContext Context context) {
+        return new MenuDescriptionSharedViewModel(context);
     }
 }

@@ -14,14 +14,19 @@ import javax.inject.Inject;
 import dagger.hilt.android.scopes.ActivityScoped;
 
 @ActivityScoped
-public class MainViewModel extends BaseViewModel {
+public class MainSharedViewModel extends BaseViewModel {
     private final Context context;
 
+    // Home으로 돌아갈지 말지
     private final MutableLiveData<Boolean> _navigateToHomeActivity = new MutableLiveData<>(false);
     public final LiveData<Boolean> navigateToHomeActivity = _navigateToHomeActivity;
 
+    // 메뉴 설명을 띄울 product의 id
+    private final MutableLiveData<Long> _toDescribeProductIdLiveData = new MutableLiveData<>(null);
+    public final LiveData<Long> toDescribeProductIdLiveData = _toDescribeProductIdLiveData;
+
     @Inject
-    public MainViewModel(Context context) {
+    public MainSharedViewModel(Context context) {
         this.context = context;
     }
 
@@ -31,6 +36,14 @@ public class MainViewModel extends BaseViewModel {
 
     public void doneNavigatingToHomeActivity() {
         _navigateToHomeActivity.postValue(false);
+    }
+
+    public void onKioskProductClicked(long productId) {
+        _toDescribeProductIdLiveData.postValue(productId);
+    }
+
+    public void doneNavigatingToMenuDescriptionActivity() {
+        _toDescribeProductIdLiveData.postValue(null);
     }
 
     @Nullable

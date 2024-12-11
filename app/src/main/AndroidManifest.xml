@@ -28,8 +28,11 @@
 
         <activity
             android:name=".screen.main.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true" />
+
+        <activity
+            android:name=".screen.menuDescription.MenuDescriptionActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

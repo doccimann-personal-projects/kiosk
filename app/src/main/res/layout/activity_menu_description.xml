@@ -1,7 +1,107 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/menu_description"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/menu_description"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!-- Back Button Container -->
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_description_back_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- Back Button -->
+            <ImageButton
+                android:id="@+id/menu_description_back_button"
+                android:layout_width="48dp"
+                android:layout_height="match_parent"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_back"
+                app:layout_constraintStart_toStartOf="@id/menu_description_back_button_container"
+                app:layout_constraintTop_toTopOf="@id/menu_description_back_button_container" />
+
+            <!-- Title Text -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="6dp"
+                android:gravity="center_vertical"
+                android:text="메뉴 조회"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@id/menu_description_back_button_container"
+                app:layout_constraintStart_toEndOf="@id/menu_description_back_button"
+                app:layout_constraintTop_toTopOf="@id/menu_description_back_button_container" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <!-- Under Menu Blank Layout -->
+        <FrameLayout
+            android:id="@+id/menu_description_under_menu_blank_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.01"
+            app:layout_constraintTop_toBottomOf="@id/menu_description_back_button_container" />
+
+        <!-- 키오스크 메뉴 노출 프레그먼트 -->
+        <FrameLayout
+            android:id="@+id/menu_description_fragment_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.81"
+            app:layout_constraintTop_toBottomOf="@id/menu_description_under_menu_blank_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/menu_description_bottom_button_container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.08"
+            app:layout_constraintTop_toBottomOf="@id/menu_description_fragment_container"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <!-- 결제하기 버튼 -->
+            <Button
+                android:id="@+id/btn_load_to_cart"
+                style="@style/CartButton"
+                android:text="장바구니 담기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/btn_back_to_main"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45" />
+
+            <!-- 돌아가기 버튼 -->
+            <Button
+                android:id="@+id/btn_back_to_main"
+                style="@style/CartButton"
+                android:text="돌아가기"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/btn_load_to_cart"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.45" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="@id/menu_description_bottom_button_container"
+            app:layout_constraintHeight_default="percent"
+            app:layout_constraintHeight_percent="0.02" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,5 +1,6 @@
 package com.example.kiosk.screen.main.fragment.cartItem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -10,6 +11,7 @@ import com.example.kiosk.databinding.FragmentCartItemBinding;
 import com.example.kiosk.model.cartItem.CartItemModel;
 import com.example.kiosk.screen.base.BaseFragment;
 import com.example.kiosk.screen.main.fragment.cartItem.viewModel.CartItemViewModel;
+import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
 import com.example.kiosk.util.provider.ResourcesProvider;
 import com.example.kiosk.widget.adapter.ModelRecyclerAdapter;
 import com.example.kiosk.widget.listener.cartItem.CartItemListListener;
@@ -22,6 +24,9 @@ import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
 public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCartItemBinding> {
+    @Inject
+    MainSharedViewModel mainSharedViewModel;
+
     @Inject
     CartItemViewModel viewModel;
 
@@ -38,7 +43,8 @@ public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCa
         adapter = new ModelRecyclerAdapter<>(List.of(), viewModel, resourcesProvider, new CartItemListListener() {
             @Override
             public void onClickItem(@NonNull CartItemModel model) {
-                // TODO 장바구니 아이템 클릭시 발생하는 이벤트
+                Intent intent = new Intent();
+                intent.putExtra("productId", model.getId());
             }
         });
     }
@@ -77,5 +83,9 @@ public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCa
     @Override
     protected FragmentCartItemBinding getViewBinding() {
         return FragmentCartItemBinding.inflate(getLayoutInflater());
+    }
+
+    public static CartItemFragment newInstance() {
+        return new CartItemFragment();
     }
 }

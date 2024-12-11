@@ -13,16 +13,19 @@ import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.home.HomeActivity;
 import com.example.kiosk.screen.main.fragment.cartItem.CartItemFragment;
 import com.example.kiosk.screen.main.fragment.kioskProduct.KioskProductFragment;
-import com.example.kiosk.screen.main.viewModel.MainViewModel;
+import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
+import com.example.kiosk.screen.menuDescription.MenuDescriptionActivity;
 
 import javax.inject.Inject;
 
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBinding> {
+public class MainActivity extends BaseActivity<MainSharedViewModel, ActivityMainBinding> {
+    public static final String PRODUCT_ID_INTENT_KEY = "productId";
+
     @Inject
-    MainViewModel viewModel;
+    MainSharedViewModel mainSharedViewModel;
 
     private Handler handler;
 
@@ -39,11 +42,11 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         super.initViews();
 
         binding.backButton.setOnClickListener(v -> {
-            viewModel.onBackButtonClicked();
+            mainSharedViewModel.onBackButtonClicked();
         });
 
-        KioskProductFragment kioskProductFragment = new KioskProductFragment();
-        CartItemFragment cartItemFragment = new CartItemFragment();
+        KioskProductFragment kioskProductFragment = KioskProductFragment.newInstance();
+        CartItemFragment cartItemFragment = CartItemFragment.newInstance();
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -54,19 +57,29 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
 
     @Override
     protected void observeData() {
-        viewModel.navigateToHomeActivity.observe(this, shouldNavigate -> {
+        mainSharedViewModel.navigateToHomeActivity.observe(this, shouldNavigate -> {
             if (shouldNavigate == true) {
                 Intent intent = new Intent(this, HomeActivity.class);
                 startActivity(intent);
 
-                viewModel.doneNavigatingToHomeActivity();
+                mainSharedViewModel.doneNavigatingToHomeActivity();
+            }
+        });
+
+        mainSharedViewModel.toDescribeProductIdLiveData.observe(this, productId -> {
+            if (productId != null) {
+                Intent intent = new Intent(this, MenuDescriptionActivity.class);
+                intent.putExtra(PRODUCT_ID_INTENT_KEY, productId);
+                startActivity(intent);
+
+                mainSharedViewModel.doneNavigatingToMenuDescriptionActivity();
             }
         });
     }
 
     @Override
     protected void executeFetchJobAfterViewModelInitialized() {
-        fetchJob = viewModel.getFetchData();
+        fetchJob = mainSharedViewModel.getFetchData();
 
         if (fetchJob != null) {
             handler.post(fetchJob);
