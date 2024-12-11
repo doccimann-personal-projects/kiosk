@@ -6,7 +6,7 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.kiosk.screen.base.BaseViewModel;
 
-public class HomeViewModel extends BaseViewModel {
+public class HomeSharedViewModel extends BaseViewModel {
     private final MutableLiveData<Boolean> _navigateToMainActivity = new MutableLiveData<>(false);
     public final LiveData<Boolean> navigateToMainActivity = _navigateToMainActivity;
 

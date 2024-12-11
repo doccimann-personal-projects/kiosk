@@ -2,7 +2,7 @@ package com.example.kiosk.di;
 
 import android.content.Context;
 
-import com.example.kiosk.screen.home.viewModel.HomeViewModel;
+import com.example.kiosk.screen.home.viewModel.HomeSharedViewModel;
 import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
 import com.example.kiosk.screen.menuDescription.viewModel.MenuDescriptionSharedViewModel;
 
@@ -15,11 +15,11 @@ import dagger.hilt.android.scopes.ActivityScoped;
 
 @Module
 @InstallIn(ActivityComponent.class)
-public class ViewModelModule {
+public class SharedViewModelModule {
     @Provides
     @ActivityScoped
-    public HomeViewModel providesHomeViewModel() {
-        return new HomeViewModel();
+    public HomeSharedViewModel providesHomeViewModel() {
+        return new HomeSharedViewModel();
     }
 
     @Provides

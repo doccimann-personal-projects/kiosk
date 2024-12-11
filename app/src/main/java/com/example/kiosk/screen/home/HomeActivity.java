@@ -11,7 +11,7 @@ import androidx.annotation.Nullable;
 import com.example.kiosk.databinding.ActivityHomeBinding;
 import com.example.kiosk.manager.permission.HomeActivityPermissionManager;
 import com.example.kiosk.screen.base.BaseActivity;
-import com.example.kiosk.screen.home.viewModel.HomeViewModel;
+import com.example.kiosk.screen.home.viewModel.HomeSharedViewModel;
 import com.example.kiosk.screen.main.MainActivity;
 
 import javax.inject.Inject;
@@ -19,13 +19,13 @@ import javax.inject.Inject;
 import dagger.hilt.android.AndroidEntryPoint;
 
 @AndroidEntryPoint
-public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBinding> {
+public class HomeActivity extends BaseActivity<HomeSharedViewModel, ActivityHomeBinding> {
 
     @Inject
     HomeActivityPermissionManager<HomeActivity> permissionManager;
 
     @Inject
-    HomeViewModel viewModel;
+    HomeSharedViewModel viewModel;
 
     private Handler handler;
 
