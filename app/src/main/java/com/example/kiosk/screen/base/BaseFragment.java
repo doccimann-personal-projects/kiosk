@@ -1,6 +1,7 @@
 package com.example.kiosk.screen.base;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
 public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBinding> extends Fragment {
+    private Handler handler;
+
     protected VB binding;
 
     protected Runnable fetchJob = null;
@@ -20,10 +23,11 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        handler = new Handler(this.requireContext().getMainLooper());
         fetchJob = getViewModel().fetchData;
 
         if (fetchJob != null) {
-            new Thread(fetchJob).start();
+            handler.post(fetchJob);
         }
     }
 
@@ -45,6 +49,10 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
     @Override
     public void onDestroy() {
         super.onDestroy();
+
+        if (fetchJob != null) {
+            handler.removeCallbacks(fetchJob);
+        }
     }
 
     protected void initState() {

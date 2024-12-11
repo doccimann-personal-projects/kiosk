@@ -34,7 +34,6 @@ public class HomeActivity extends BaseActivity<HomeSharedViewModel, ActivityHome
         super.onCreate(savedInstanceState);
 
         handler = new Handler(this.getMainLooper());
-        executeFetchJobAfterViewModelInitialized();
 
         // API 33 이상일 경우 알림 권한 요청 처리
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {

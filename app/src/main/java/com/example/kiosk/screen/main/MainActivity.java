@@ -38,6 +38,15 @@ public class MainActivity extends BaseActivity<MainSharedViewModel, ActivityMain
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+
+        if (fetchJob != null) {
+            handler.removeCallbacks(fetchJob);
+        }
+    }
+
+    @Override
     protected void initViews() {
         super.initViews();
 
