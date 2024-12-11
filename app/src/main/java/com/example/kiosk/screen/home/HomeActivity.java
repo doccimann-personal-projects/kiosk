@@ -33,9 +33,6 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // ViewModel 초기화
-        initViewModelObserver();
-
         handler = new Handler(this.getMainLooper());
         executeFetchJobAfterViewModelInitialized();
 
@@ -43,6 +40,15 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
             permissionManager.requestOptionalPermissions(this, null);
         }
+    }
+
+    @Override
+    protected void initViews() {
+        super.initViews();
+
+        binding.orderButton.setOnClickListener(v -> {
+            viewModel.onOrderButtonClicked();
+        });
     }
 
     @Override
@@ -56,14 +62,6 @@ public class HomeActivity extends BaseActivity<HomeViewModel, ActivityHomeBindin
                 viewModel.doneNavigatingToMainActivity();
             }
         });
-    }
-
-    @Override
-    protected void initViewModelObserver() {
-        binding.setViewModel(viewModel);
-        binding.setLifecycleOwner(this);
-
-        observeData();
     }
 
     @NonNull

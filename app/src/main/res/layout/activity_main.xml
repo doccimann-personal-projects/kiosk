@@ -2,13 +2,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data>
-
-        <variable
-            name="viewModel"
-            type="com.example.kiosk.screen.main.viewModel.MainViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
@@ -29,7 +22,6 @@
                 android:layout_width="48dp"
                 android:layout_height="match_parent"
                 android:background="?attr/selectableItemBackgroundBorderless"
-                android:onClick="@{() -> viewModel.onBackButtonClicked()}"
                 android:src="@drawable/ic_back"
                 app:layout_constraintStart_toStartOf="@id/back_button_container"
                 app:layout_constraintTop_toTopOf="@id/back_button_container" />

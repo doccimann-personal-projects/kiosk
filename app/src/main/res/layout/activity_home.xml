@@ -1,17 +1,7 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- 데이터 바인딩을 사용하기 위해선 layout 안에 감싸야함 -->
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><!-- 데이터 바인딩을 사용하기 위해선 layout 안에 감싸야함 -->
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    >
-
-    <!-- Data Binding -->
-    <data>
-        <variable
-            name="viewModel"
-            type="com.example.kiosk.screen.home.viewModel.HomeViewModel" />
-    </data>
+    xmlns:tools="http://schemas.android.com/tools">
 
     <!-- Layouts -->
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -27,9 +17,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="150dp"
             android:text="MS 레스토랑"
+            android:textAlignment="center"
             android:textColor="#000000"
             android:textSize="50sp"
-            android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -49,7 +39,6 @@
             android:layout_height="100dp"
             android:layout_marginTop="50dp"
             android:background="@drawable/home_order_button_background"
-            android:onClick="@{() -> viewModel.onOrderButtonClicked()}"
             android:text="주문하기"
             android:textColor="#FFFFFF"
             android:textSize="50sp"

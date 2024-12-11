@@ -30,9 +30,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // 아래는 Activity 보일러 플레이트입니다
-        initViewModelObserver();
-
         handler = new Handler(this.getMainLooper());
         executeFetchJobAfterViewModelInitialized();
     }
@@ -41,19 +38,16 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
     protected void initViews() {
         super.initViews();
 
-        // Kiosk Product Fragment 노출
+        binding.backButton.setOnClickListener(v -> {
+            viewModel.onBackButtonClicked();
+        });
+
         KioskProductFragment kioskProductFragment = new KioskProductFragment();
-
-        getSupportFragmentManager()
-                .beginTransaction()
-                .add(R.id.kiosk_product_fragment_container, kioskProductFragment)
-                .commit();
-
-        // Cart Item Fragment 노출
         CartItemFragment cartItemFragment = new CartItemFragment();
 
         getSupportFragmentManager()
                 .beginTransaction()
+                .add(R.id.kiosk_product_fragment_container, kioskProductFragment)
                 .add(R.id.cart_item_fragment_container, cartItemFragment)
                 .commit();
     }
@@ -77,14 +71,6 @@ public class MainActivity extends BaseActivity<MainViewModel, ActivityMainBindin
         if (fetchJob != null) {
             handler.post(fetchJob);
         }
-    }
-
-    @Override
-    protected void initViewModelObserver() {
-        binding.setViewModel(viewModel);
-        binding.setLifecycleOwner(this);
-
-        observeData();
     }
 
     @NonNull
