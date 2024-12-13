@@ -37,7 +37,6 @@ public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCa
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("brian", "CartItemFragment.onCreate() called!");
         super.onCreate(savedInstanceState);
 
         adapter = new ModelRecyclerAdapter<>(List.of(), viewModel, resourcesProvider, new CartItemListListener() {
@@ -47,6 +46,15 @@ public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCa
                 intent.putExtra("productId", model.getId());
             }
         });
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+
+        new Thread(() -> {
+            viewModel.onResume();
+        }).start();
     }
 
     @Override
@@ -68,15 +76,13 @@ public class CartItemFragment extends BaseFragment<CartItemViewModel, FragmentCa
 
     @Override
     protected void observeData() {
-        Log.i("brian", "cartItemFragment.observeData() called!");
-
         viewModel.cartItemListLiveData.observe(this, modelList -> {
             adapter.submitList(modelList);
         });
     }
 
     @Override
-    protected CartItemViewModel getViewModel() {
+    public CartItemViewModel getViewModel() {
         return viewModel;
     }
 

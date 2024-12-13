@@ -8,34 +8,51 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.kiosk.model.cartItem.CartItemModel;
 import com.example.kiosk.screen.base.BaseViewModel;
+import com.example.kiosk.useCase.cartItem.FindCartItemUseCase;
+import com.example.kiosk.useCase.cartItem.PersistCartItemUseCase;
 
 import java.util.List;
 
 public class CartItemViewModel extends BaseViewModel {
+    private final PersistCartItemUseCase persistCartItemUseCase;
+
+    private final FindCartItemUseCase findCartItemUseCase;
+
+    public CartItemViewModel(PersistCartItemUseCase persistCartItemUseCase, FindCartItemUseCase findCartItemUseCase) {
+        this.persistCartItemUseCase = persistCartItemUseCase;
+        this.findCartItemUseCase = findCartItemUseCase;
+    }
+
     private MutableLiveData<List<CartItemModel>> _cartItemListLiveData = new MutableLiveData<>(List.of());
     public LiveData<List<CartItemModel>> cartItemListLiveData = _cartItemListLiveData;
 
     public void onIncreaseButtonClicked(long itemId) {
-        Log.i("brian", "increase button clicked!");
+
     }
 
     public void onDecreaseButtonClicked(long itemId) {
-        Log.i("brian", "decrease button clicked!");
+
     }
 
     public void onCheckoutButtonClicked() {
-        Log.i("brian", "cartItemViewModel.onCheckoutButtonClicked() called!");
+
     }
 
     public void onCancelButtonClicked() {
-        Log.i("brian", "cartItemViewModel.onCancelButtonClicked() called!");
+
+    }
+
+    public void onResume() {
+        List<CartItemModel> cartItemModelList = findCartItemUseCase.findAll();
+        _cartItemListLiveData.postValue(cartItemModelList);
     }
 
     @Nullable
     @Override
     protected Runnable initializeFetchData() {
         return () -> {
-            Log.i("brian", "cartItemViewModel.initializeFetchData() called!");
+            List<CartItemModel> cartItemModelList = findCartItemUseCase.findAll();
+            _cartItemListLiveData.postValue(cartItemModelList);
         };
     }
 }

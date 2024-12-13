@@ -38,8 +38,6 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("brian", "KioskProductFragment.onCreate() called!");
-
         super.onCreate(savedInstanceState);
 
         adapter = new ModelRecyclerAdapter<>(List.of(), viewModel, resourcesProvider, new KioskProductListListener() {
@@ -64,15 +62,13 @@ public class KioskProductFragment extends BaseFragment<KioskProductViewModel, Fr
 
     @Override
     protected void observeData() {
-        Log.i("brian", "kioskProductFragment.observeData() called!");
-
         viewModel.kioskProductModelListLiveData.observe(this, modelList -> {
             adapter.submitList(modelList);
         });
     }
 
     @Override
-    protected KioskProductViewModel getViewModel() {
+    public KioskProductViewModel getViewModel() {
         return viewModel;
     }
 

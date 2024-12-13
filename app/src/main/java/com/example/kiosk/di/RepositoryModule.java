@@ -1,7 +1,7 @@
 package com.example.kiosk.di;
 
-import com.example.kiosk.data.repository.kiosk.DefaultKioskProductRepository;
-import com.example.kiosk.data.repository.kiosk.KioskProductRepository;
+import com.example.kiosk.data.network.kiosk.repository.DefaultKioskProductRepository;
+import com.example.kiosk.data.network.kiosk.repository.KioskProductRepository;
 
 import javax.inject.Singleton;
 

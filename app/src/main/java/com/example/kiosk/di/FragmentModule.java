@@ -8,6 +8,8 @@ import com.example.kiosk.screen.main.fragment.cartItem.viewModel.CartItemViewMod
 import com.example.kiosk.screen.main.fragment.kioskProduct.viewModel.KioskProductViewModel;
 import com.example.kiosk.screen.menuDescription.fragment.menuDescription.MenuDescriptionFragment;
 import com.example.kiosk.screen.menuDescription.fragment.menuDescription.viewModel.MenuDescriptionViewModel;
+import com.example.kiosk.useCase.cartItem.FindCartItemUseCase;
+import com.example.kiosk.useCase.cartItem.PersistCartItemUseCase;
 import com.example.kiosk.useCase.kioskProduct.FetchKioskProductUseCase;
 import com.example.kiosk.util.provider.DefaultResourcesProvider;
 import com.example.kiosk.util.provider.ResourcesProvider;
@@ -29,8 +31,8 @@ public class FragmentModule {
 
     @Provides
     @FragmentScoped
-    public CartItemViewModel providesCartItemViewModel() {
-        return new CartItemViewModel();
+    public CartItemViewModel providesCartItemViewModel(PersistCartItemUseCase persistCartItemUseCase, FindCartItemUseCase findCartItemUseCase) {
+        return new CartItemViewModel(persistCartItemUseCase, findCartItemUseCase);
     }
 
     @Provides

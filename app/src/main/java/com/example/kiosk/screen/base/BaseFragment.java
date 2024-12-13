@@ -26,9 +26,7 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
         handler = new Handler(this.requireContext().getMainLooper());
         fetchJob = getViewModel().fetchData;
 
-        if (fetchJob != null) {
-            handler.post(fetchJob);
-        }
+        new Thread(fetchJob).start();
     }
 
     @Nullable
@@ -71,7 +69,7 @@ public abstract class BaseFragment<VM extends BaseViewModel, VB extends ViewBind
 
     protected abstract void observeData();
 
-    protected abstract VM getViewModel();
+    public abstract VM getViewModel();
 
     protected abstract VB getViewBinding();
 }

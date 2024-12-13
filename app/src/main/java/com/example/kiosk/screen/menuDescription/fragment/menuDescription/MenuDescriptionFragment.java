@@ -24,7 +24,6 @@ public class MenuDescriptionFragment extends BaseFragment<MenuDescriptionViewMod
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
-        Log.i("brian", "MenuDescriptionFragment.onCreate() called!");
         super.onCreate(savedInstanceState);
     }
 
@@ -46,11 +45,11 @@ public class MenuDescriptionFragment extends BaseFragment<MenuDescriptionViewMod
         ImageViewExtension.loadDefault(binding.menuDescriptionImage, productModel.getImageUrl(), 0f);
         binding.menuDescriptionName.setText(productModel.getName());
         binding.menuDescriptionPrice.setText(productModel.getPrice().toString());
-        binding.menuDescriptionDetails.setText(productModel.getName());
+        binding.menuDescriptionDetails.setText(productModel.getDescription());
     }
 
     @Override
-    protected MenuDescriptionViewModel getViewModel() {
+    public MenuDescriptionViewModel getViewModel() {
         return viewModel;
     }
 

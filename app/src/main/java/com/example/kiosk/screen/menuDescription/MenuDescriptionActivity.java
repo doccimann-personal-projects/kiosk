@@ -9,9 +9,11 @@ import androidx.annotation.Nullable;
 
 import com.example.kiosk.R;
 import com.example.kiosk.databinding.ActivityMenuDescriptionBinding;
+import com.example.kiosk.model.kioskProduct.KioskProductModel;
 import com.example.kiosk.screen.base.BaseActivity;
 import com.example.kiosk.screen.main.MainActivity;
 import com.example.kiosk.screen.menuDescription.fragment.menuDescription.MenuDescriptionFragment;
+import com.example.kiosk.screen.menuDescription.fragment.menuDescription.viewModel.MenuDescriptionViewModel;
 import com.example.kiosk.screen.menuDescription.viewModel.MenuDescriptionSharedViewModel;
 
 import javax.inject.Inject;
@@ -22,6 +24,8 @@ import dagger.hilt.android.AndroidEntryPoint;
 public class MenuDescriptionActivity extends BaseActivity<MenuDescriptionSharedViewModel, ActivityMenuDescriptionBinding> {
     @Inject
     MenuDescriptionSharedViewModel sharedViewModel;
+
+    MenuDescriptionViewModel menuDescriptionFragmentViewModel;
 
     private Handler handler;
 
@@ -44,8 +48,10 @@ public class MenuDescriptionActivity extends BaseActivity<MenuDescriptionSharedV
             this.finish();
         });
 
+        // load
         binding.btnLoadToCart.setOnClickListener(v -> {
-            sharedViewModel.onLoadToCartButtonClicked();
+            KioskProductModel productModel = menuDescriptionFragmentViewModel.kioskProductModelLiveData.getValue();
+            sharedViewModel.onLoadToCartButtonClicked(productModel);
             this.finish();
         });
 
@@ -57,6 +63,9 @@ public class MenuDescriptionActivity extends BaseActivity<MenuDescriptionSharedV
         getSupportFragmentManager()
                 .beginTransaction()
                 .add(R.id.menu_description_fragment_container, menuDescriptionFragment)
+                .runOnCommit(() -> {
+                    menuDescriptionFragmentViewModel = menuDescriptionFragment.getViewModel();
+                })
                 .commit();
     }
 

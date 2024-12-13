@@ -73,4 +73,8 @@ dependencies {
 
     implementation(libs.auto.value.parcel)
     annotationProcessor(libs.auto.value.parcel)
+
+    // Room
+    implementation(libs.room.runtime)
+    annotationProcessor(libs.room.compiler)
 }

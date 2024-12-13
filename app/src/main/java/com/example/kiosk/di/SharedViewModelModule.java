@@ -5,6 +5,7 @@ import android.content.Context;
 import com.example.kiosk.screen.home.viewModel.HomeSharedViewModel;
 import com.example.kiosk.screen.main.viewModel.MainSharedViewModel;
 import com.example.kiosk.screen.menuDescription.viewModel.MenuDescriptionSharedViewModel;
+import com.example.kiosk.useCase.cartItem.PersistCartItemUseCase;
 
 import dagger.Module;
 import dagger.Provides;
@@ -30,7 +31,7 @@ public class SharedViewModelModule {
 
     @Provides
     @ActivityScoped
-    public MenuDescriptionSharedViewModel providesMenuDescriptionSharedViewModel(@ActivityContext Context context) {
-        return new MenuDescriptionSharedViewModel(context);
+    public MenuDescriptionSharedViewModel providesMenuDescriptionSharedViewModel(@ActivityContext Context context, PersistCartItemUseCase persistCartItemUseCase) {
+        return new MenuDescriptionSharedViewModel(context, persistCartItemUseCase);
     }
 }

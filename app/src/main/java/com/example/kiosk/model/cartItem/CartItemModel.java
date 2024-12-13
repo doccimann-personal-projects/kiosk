@@ -1,5 +1,6 @@
 package com.example.kiosk.model.cartItem;
 
+import com.example.kiosk.data.database.cartItem.entity.CartItemRoomEntity;
 import com.example.kiosk.model.CellType;
 import com.example.kiosk.model.Model;
 
@@ -17,6 +18,10 @@ public class CartItemModel extends Model {
         this.name = name;
         this.pricePerItem = pricePerItem;
         this.quantity = quantity;
+    }
+
+    public static CartItemModel fromRoomEntity(CartItemRoomEntity entity) {
+        return new CartItemModel(entity.getId(), CellType.CART_ITEM_CELL, entity.getProductName(), entity.getPricePerItem(), entity.getQuantity());
     }
 
     public String getName() {

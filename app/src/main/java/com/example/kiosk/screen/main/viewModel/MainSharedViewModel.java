@@ -49,8 +49,6 @@ public class MainSharedViewModel extends BaseViewModel {
     @Nullable
     @Override
     protected Runnable initializeFetchData() {
-        return () -> {
-            Toast.makeText(context, "메인 화면 호출 완료", Toast.LENGTH_SHORT).show();
-        };
+        return null;
     }
 }

@@ -1,6 +1,6 @@
-package com.example.kiosk.data.repository.kiosk;
+package com.example.kiosk.data.network.kiosk.repository;
 
-import com.example.kiosk.data.entity.KioskProductEntity;
+import com.example.kiosk.data.network.kiosk.entity.KioskProductEntity;
 
 import java.util.List;
 import java.util.Optional;

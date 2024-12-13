@@ -91,7 +91,7 @@ public class MainActivity extends BaseActivity<MainSharedViewModel, ActivityMain
         fetchJob = mainSharedViewModel.getFetchData();
 
         if (fetchJob != null) {
-            handler.post(fetchJob);
+            new Thread(fetchJob).start();
         }
     }
 
